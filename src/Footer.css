@@ -16,3 +16,7 @@
     text-decoration: none;
     color: rgb(152, 76, 224);
 }
+
+.Footer__a:hover {
+    text-decoration: underline;
+}

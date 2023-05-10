@@ -1,0 +1,23 @@
+.Dashboard {
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Dashboard__buttons-container {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+}
+
+.Dashboard__button {
+    all: unset;
+    cursor: pointer;
+    text-decoration: underline;
+    margin: 15px;
+}
+
+.Dashboard__button:hover {
+    color: rgb(255, 238, 0);
+}
