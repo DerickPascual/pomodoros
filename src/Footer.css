@@ -1,20 +1,19 @@
 .Footer {
-    color: rgb(112, 112, 112);
+    color: rgb(147, 147, 147);
     font-size: x-small;
-    display: flex;
-    justify-content: space-between;
     position: absolute;
     bottom: 0;
+    text-align: left;
     width: 100%;
 }
 
 .Footer__p {
-    margin: 15px;
+    margin: 10px;
 }
 
 .Footer__a {
     text-decoration: none;
-    color: rgb(152, 76, 224);
+    color: rgb(158, 80, 232);
 }
 
 .Footer__a:hover {
