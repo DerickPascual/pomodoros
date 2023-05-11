@@ -3,9 +3,9 @@ import Draggable from 'react-draggable';
 
 function Modal(props) {
     return (
-        <div>
+        <div >
             <Draggable>
-                <div className='Modal' style={{width: `${props.width}`}}>
+                <div className='Modal'>
                     <button className='Modal__close-button' onClick={() => props.toggleVisibility()}>x</button>
                     {props.children}
                 </div>

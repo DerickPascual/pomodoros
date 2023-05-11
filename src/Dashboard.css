@@ -20,8 +20,10 @@
     cursor: pointer;
     text-decoration: underline;
     margin: 15px;
-    background-color:black;
     padding: 5px;
+    /* got strange behavior when dragging an element
+    upwards near the background. This is solution for now. */
+    background: url("./images/black.jpg");
 }
 
 .Dashboard__button:hover {
