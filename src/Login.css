@@ -1,0 +1,6 @@
+.Login {
+    color: rgb(200, 200, 200);
+    margin: 20px; 
+    display: flex;
+    flex-direction: column;
+}

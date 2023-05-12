@@ -1,6 +1,7 @@
 import './Dashboard.css';
 import { useState } from 'react';
 import Modal from './Modal';
+import LoginRegisterForm from './LoginRegisterForm';
 
 function Dashboard() {
     const [showSettings, setShowSettings] = useState(false);
@@ -43,9 +44,7 @@ function Dashboard() {
                 </button>
                 {showSignIn &&
                     <Modal toggleVisibility={toggleSignIn}>
-                        <p>email</p>
-                        <p>password</p>
-                        <p>sign up</p>
+                        <LoginRegisterForm />
                     </Modal>
                 }
             </div>
