@@ -2,8 +2,12 @@ import './Dashboard.css';
 import { useState } from 'react';
 import Modal from './Modal';
 import LoginRegisterForm from './LoginRegisterForm';
+import SettingsForm from './SettingsForm';
 
-function Dashboard() {
+function Dashboard({workLen, setWorkLen, shortBreakLen, setShortBreakLen, longBreakLen, setLongBreakLen}) {
+
+    const props = {workLen, setWorkLen, shortBreakLen, setShortBreakLen, longBreakLen, setLongBreakLen}
+
     const [showSettings, setShowSettings] = useState(false);
     const [showSignIn, setShowSignIn] = useState(false);
 
@@ -18,23 +22,12 @@ function Dashboard() {
     return (
         <div className='Dashboard__buttons-container'>
             <div className='Dashboard__left-buttons-container'>
-                <button className='Dashboard__button'>
-                    short break
-                </button>
-                <button className='Dashboard__button'>
-                    long break
-                </button>
-                <button className='Dashboard__button'>
-                    work
-                </button>
                 <button className='Dashboard__button' onClick={toggleSettings}>
                     settings
                 </button>
                 {showSettings && 
                     <Modal toggleVisibility={toggleSettings}>
-                        <p>short break length</p>
-                        <p>long break length</p>
-                        <p>work length</p>
+                        <SettingsForm {...props} />
                     </Modal>
                 }
             </div>
@@ -42,11 +35,11 @@ function Dashboard() {
                 <button className='Dashboard__button' onClick={toggleSignIn}>
                     sign in
                 </button>
-                {showSignIn &&
-                    <Modal toggleVisibility={toggleSignIn}>
-                        <LoginRegisterForm />
-                    </Modal>
-                }
+                    {showSignIn &&
+                        <Modal toggleVisibility={toggleSignIn}>
+                            <LoginRegisterForm />
+                        </Modal>
+                    }
             </div>
         </div>
     );

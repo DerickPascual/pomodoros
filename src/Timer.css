@@ -1,0 +1,16 @@
+.Timer {
+    color: white;
+    height: 65vh;
+    position: relative;
+}
+
+.Timer__countdown-container {
+    font-size: 4.5rem;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+}
+
+

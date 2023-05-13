@@ -12,6 +12,7 @@
 }
 
 .Dashboard__right-buttons-container {
+    width: 324px;
     text-align: right;
 }
 
@@ -21,9 +22,10 @@
     text-decoration: underline;
     margin: 15px;
     padding: 5px;
+    color: grey;
     /* got strange behavior when dragging an element
     upwards near the background. This is solution for now. */
-    background: url("./images/black.jpg");
+    /* background: url("./images/black.jpg"); */
 }
 
 .Dashboard__button:hover {

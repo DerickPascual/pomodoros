@@ -1,0 +1,49 @@
+.Form {
+    color: rgb(200, 200, 200);
+    margin: 20px; 
+    display: flex;
+    flex-direction: column;
+}
+
+.Form__text-input {
+    all: unset;
+    background: rgb(255, 255, 255);
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.Form__num-input {
+    all: unset;
+    background: rgb(255, 255, 255);
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.Form__button {
+    all: unset;
+    text-decoration: underline;
+    color: rgb(200, 200, 200);
+    cursor: pointer;
+    width: fit-content;
+    margin: 5px;
+}
+
+.Form__button:hover {
+    color: rgb(255, 238, 0);
+}
+
+.Form__submit-container {
+    text-align: center;
+}
+
+.Form__switch-container {
+    margin-top: 15px;
+}

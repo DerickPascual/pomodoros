@@ -2,9 +2,12 @@
     background-color: rgba(0, 0, 0, 0.6);
     color: rgb(156, 156, 156);
     text-align: left;
-    width: 250px;
+    width: 264px;
     margin: 15px;
     padding: 15px;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 1;
 }
 
 .Modal__close-button {
@@ -18,6 +21,6 @@
 }
 
 .Modal__close-button:hover {
-    color: red;
-    border-color: red;
+    color: rgb(255, 238, 0);
+    border-color: rgb(255, 238, 0);
 }

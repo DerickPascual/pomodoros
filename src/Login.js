@@ -1,4 +1,4 @@
-import './Login.css';
+import './Form.css';
 import { useState } from 'react';
 
 function Login(props) {
@@ -23,7 +23,7 @@ function Login(props) {
     }
 
     return (
-        <div className='Login'>
+        <div className='Form'>
             <form onSubmit={handleSubmit}>
                 <label for='email'>email</label>
                 <input 
@@ -32,11 +32,11 @@ function Login(props) {
                     style = {{
                         outline: emailIsFocused ? '2px solid orange' : 'none'
                     }}
-                    className='LoginRegisterForm__text-input'
+                    className='Form__text-input'
                     value={email} 
                     onChange={(e) => setEmail(e.target.value)} 
                     type='email' 
-                    placeholder='' 
+                    placeholder='email' 
                     id='email' 
                     name='email' />
                 <label for='password'>password</label>
@@ -46,19 +46,19 @@ function Login(props) {
                     style = {{
                         outline: passIsFocused ? '2px solid orange' : 'none'
                     }}
-                    className='LoginRegisterForm__text-input'
+                    className='Form__text-input'
                     value={pass} 
                     onChange={(e) => setPass(e.target.value)}
                     type='password' 
-                    placeholder='' 
+                    placeholder='password' 
                     id='password' 
                     name='email' />
-                <div className='LoginRegisterForm__submit-container'>
-                    <button className='LoginRegisterForm__button'>log in</button>
+                <div className='Form__submit-container'>
+                    <button className='Form__button'>log in</button>
                 </div>
             </form>
-            <div className='LoginRegisterForm__switch-container'>
-                <button className='LoginRegisterForm__button' onClick={() => props.onFormSwitch('register')}>new? register</button>
+            <div className='Form__switch-container'>
+                <button className='Form__button' onClick={() => props.onFormSwitch('register')}>new? register</button>
             </div>
         </div>
     )
