@@ -4,9 +4,9 @@ import Modal from './Modal';
 import LoginRegisterForm from './LoginRegisterForm';
 import SettingsForm from './SettingsForm';
 
-function Dashboard({workLen, setWorkLen, shortBreakLen, setShortBreakLen, longBreakLen, setLongBreakLen}) {
+function Dashboard({workLen, setWorkLen, shortBreakLen, setShortBreakLen, longBreakLen, setLongBreakLen, currentPeriod, setCurrentPeriod, longBrInterval, setLongBrInterval}) {
 
-    const props = {workLen, setWorkLen, shortBreakLen, setShortBreakLen, longBreakLen, setLongBreakLen}
+    const props = {workLen, setWorkLen, shortBreakLen, setShortBreakLen, longBreakLen, setLongBreakLen, currentPeriod, setCurrentPeriod, longBrInterval, setLongBrInterval}
 
     const [showSettings, setShowSettings] = useState(false);
     const [showSignIn, setShowSignIn] = useState(false);
@@ -19,9 +19,30 @@ function Dashboard({workLen, setWorkLen, shortBreakLen, setShortBreakLen, longBr
         setShowSignIn(!showSignIn);
     }
 
+    const handleWork = () => {
+        setCurrentPeriod('work');
+    }
+
+    const handleShort = () => {
+        setCurrentPeriod('short')
+    }
+    
+    const handleLong = () => {
+        setCurrentPeriod('long')
+    }
+
     return (
         <div className='Dashboard__buttons-container'>
             <div className='Dashboard__left-buttons-container'>
+                <button onClick={handleWork} className='Dashboard__button'>
+                    work
+                </button>
+                <button onClick={handleShort} className='Dashboard__button'>
+                    short break
+                </button>
+                <button onClick={handleLong} className='Dashboard__button'>
+                    long break
+                </button>
                 <button className='Dashboard__button' onClick={toggleSettings}>
                     settings
                 </button>

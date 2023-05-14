@@ -1,16 +1,53 @@
 .Timer {
     color: white;
-    height: 65vh;
-    position: relative;
 }
 
 .Timer__countdown-container {
     font-size: 4.5rem;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
     display: flex;
     justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
 }
 
 
+.Timer__text {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.Timer__button-container {
+    padding: 0px;
+    /* gets rid of margin of font */
+    margin-top: -40px;
+    z-index: -1;
+}
+
+.Timer__button {
+    all: unset;
+    text-decoration: underline;
+    color: rgb(162, 162, 162);
+    cursor: pointer;
+    width: fit-content;
+    font-size: 1rem;
+    margin: 10px;
+}
+
+.Timer__button:hover {
+    color: rgb(255, 238, 0);
+}
+
+.Timer__control-container{
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    /* allows z-index of buttons to work */
+    display: flex;
+    flex-direction: column;
+}
+
+.handle:hover {
+    cursor: move;
+}

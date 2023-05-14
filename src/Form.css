@@ -47,3 +47,9 @@
 .Form__switch-container {
     margin-top: 15px;
 }
+
+.Form__hint {
+    font-size: .75rem;
+    margin: 0px;
+    padding: 0px;
+}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Form.css';
 
-function SettingsForm({workLen, setWorkLen, shortBreakLen, setShortBreakLen, longBreakLen, setLongBreakLen}) {
+function SettingsForm({workLen, setWorkLen, shortBreakLen, setShortBreakLen, longBreakLen, setLongBreakLen, currentPeriod, setCurrentPeriod, longBrInterval, setLongBrInterval}) {
 
     const [shortIsFocused, setShortIsFocused] = useState(false);
 
@@ -21,6 +21,12 @@ function SettingsForm({workLen, setWorkLen, shortBreakLen, setShortBreakLen, lon
         setWorkIsFocused(!workIsFocused);
     }
 
+    const [longBrIntervalFocused, setLongBrIntervalFocused] = useState(false);
+
+    const handleLongBrIntervalFocusBlur = () => {
+        setLongBrIntervalFocused(!longBrIntervalFocused)
+    }
+
     const handleWorkChange = (e) => {
         setWorkLen(e.target.value);
     }
@@ -33,6 +39,9 @@ function SettingsForm({workLen, setWorkLen, shortBreakLen, setShortBreakLen, lon
         setLongBreakLen(e.target.value);
     }
 
+    const handleLongBrIntervalChange = (e) => {
+        setLongBrInterval(e.target.value);
+    }
     return (
         <div className='Form'>
             <form>
@@ -78,8 +87,23 @@ function SettingsForm({workLen, setWorkLen, shortBreakLen, setShortBreakLen, lon
                     onChange={handleLongChange}
                     >
                 </input>
+                <label>long break interval</label>
+                <input
+                    className='Form__num-input'
+                    type='number'
+                    min='1'
+                    onFocus={handleLongBrIntervalFocusBlur}
+                    onBlur={handleLongBrIntervalFocusBlur}
+                    style = {{
+                        width: '20%',
+                        outline: longBrIntervalFocused ? '2px solid orange' : 'none'
+                    }}
+                    value={longBrInterval}
+                    onChange={handleLongBrIntervalChange}
+                    >
+                </input>
             </form>
-
+            <p className='Form__hint'>hint: click the numbers on the timer to drag it!</p>
         </div>
     )
 }

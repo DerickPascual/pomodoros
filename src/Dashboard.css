@@ -1,3 +1,9 @@
+@media screen and (max-width: 600px) {
+    .Dashboard__buttons-container {
+        visibility: hidden;
+    }
+}
+
 .Dashboard__buttons-container {
     color: white;
     width: 100%;
