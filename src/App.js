@@ -37,6 +37,7 @@ function App() {
   const [sessionOnBreak, setSessionOnBreak] = useState(null);
   // volume 
   const [volume, setVolume] = useState(25);
+  const [showIntButtons, setShowIntButtons] = useState(true);
 
   // ensures function is only called the first time App is rendered
   useEffect(() => {
@@ -78,6 +79,14 @@ function App() {
 
         if (userRead.volume) {
           setVolume(userRead.volume);
+        }
+
+        if (userRead.showIntButtons) {
+          setShowIntButtons(userRead.showIntButtons);
+        }
+
+        if (userRead.showStats) {
+          setShowStats(userRead.showStats);
         }
 
         setSessionTotal(0);
@@ -155,6 +164,8 @@ function App() {
         userId={userId}
         setVolume={setVolume}
         volume={volume}
+        showIntButtons={showIntButtons}
+        setShowIntButtons={setShowIntButtons}
       />
       <Timer 
         workLen={workLen}

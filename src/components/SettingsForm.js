@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import '../styles/Form.css';
-import { db } from '../firebase';
+import { db, auth } from '../firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import useSound from 'use-sound';
 import timerSfx from '../sounds/minecraft_level_up.mp3';
+import { signOut } from "firebase/auth";
 
-function SettingsForm({workLen, setWorkLen, shortBreakLen, setShortBreakLen, longBreakLen, setLongBreakLen, currentPeriod, setCurrentPeriod, longBrInterval, setLongBrInterval, loggedIn, statsPosition, setStatsPosition, timerPosition, setTimerPosition, setStatsType, statsType, userId, volume, setVolume}) {
+// definitely will need to break this function up 
+function SettingsForm({workLen, setWorkLen, shortBreakLen, setShortBreakLen, longBreakLen, setLongBreakLen, currentPeriod, setCurrentPeriod, longBrInterval, setLongBrInterval, loggedIn, showStats, setShowStats, statsPosition, setStatsPosition, timerPosition, setTimerPosition, setStatsType, statsType, userId, volume, setVolume, showIntButtons, setShowIntButtons}) {
     
     const [goodSync, setGoodSync] = useState(false);
 
@@ -74,7 +76,9 @@ function SettingsForm({workLen, setWorkLen, shortBreakLen, setShortBreakLen, lon
             workLen: workLen,
             longBrInterval: longBrInterval,
             statsType: statsType,
-            volume: volume
+            volume: volume,
+            showIntButtons: showIntButtons,
+            showStats: showStats
         }, { merge: true });
 
         setGoodSync(true);
@@ -86,6 +90,26 @@ function SettingsForm({workLen, setWorkLen, shortBreakLen, setShortBreakLen, lon
     }
 
     const [play] = useSound(timerSfx, { volume: (volume * 1/100)})
+
+    const handleIntButtonsVis = (e) => {
+        e.preventDefault()
+        setShowIntButtons(!showIntButtons);
+    }
+
+    const handleSignOut = (e) => {
+        e.preventDefault()
+
+        signOut(auth).then(() => {
+
+        }).catch((error) => {
+
+        })
+    }
+
+    const toggleStats = (e) => {
+        e.preventDefault();
+        setShowStats(!showStats);
+    }
 
     return (
         <div className='Form'>
@@ -134,20 +158,29 @@ function SettingsForm({workLen, setWorkLen, shortBreakLen, setShortBreakLen, lon
                 </input>
                 <p>---------------------</p>
                 <label>long break interval</label>
-                <input
-                    className='Form__num-input'
-                    type='number'
-                    min='1'
-                    onFocus={handleLongBrIntervalFocusBlur}
-                    onBlur={handleLongBrIntervalFocusBlur}
-                    style = {{
-                        width: '20%',
-                        outline: longBrIntervalFocused ? '2px solid orange' : 'none'
-                    }}
-                    value={longBrInterval}
-                    onChange={handleLongBrIntervalChange}
-                    >
-                </input>
+                <div>
+                    <input
+                        className='Form__num-input'
+                        type='number'
+                        min='1'
+                        onFocus={handleLongBrIntervalFocusBlur}
+                        onBlur={handleLongBrIntervalFocusBlur}
+                        style = {{
+                            width: '20%',
+                            outline: longBrIntervalFocused ? '2px solid orange' : 'none'
+                        }}
+                        value={longBrInterval}
+                        onChange={handleLongBrIntervalChange}
+                        >
+                    </input>
+                </div>
+                <div style={{textAlign: 'center'}}>
+                        { showIntButtons ? 
+                            <button className='Form__button' onClick={handleIntButtonsVis} style={{fontSize: 'small'}}>hide set interval buttons</button>
+                            :
+                            <button className='Form__button' onClick={handleIntButtonsVis} style={{fontSize: 'small'}}>unhide set interval buttons</button>
+                        }
+                </div>
                 <p>---------------------</p>
                 <div className='Form__volume-container'>
                     <label htmlFor='volume'>timer volume</label>
@@ -162,10 +195,9 @@ function SettingsForm({workLen, setWorkLen, shortBreakLen, setShortBreakLen, lon
                         onChange={handleVol}
                         onMouseUp={() => play()}
                     />
-                </div>
-                <p>---------------------</p>
-                <div className='Form__reset-button-container'>
                     <button className='Form__reset-button' onClick={handleResetTimerPos}>reset timer position</button>
+                </div>
+                <div className='Form__reset-button-container'>
                     {
                         loggedIn && 
                         <div>
@@ -175,6 +207,14 @@ function SettingsForm({workLen, setWorkLen, shortBreakLen, setShortBreakLen, lon
                                 <option value='alltime'>alltime</option>
                                 <option value='session'>session</option>
                             </select>
+                            <button className='Form__button' style={{fontSize: 'small'}} onClick={toggleStats}>
+                            {showStats && 
+                                <>hide  stats</>
+                            }
+                            {!showStats &&
+                                <>show stats</>
+                            }
+                        </button>
                             <button className='Form__reset-button' onClick={handleResetStatsPos}>reset stats position</button>
                         </div>
                     }
@@ -184,9 +224,13 @@ function SettingsForm({workLen, setWorkLen, shortBreakLen, setShortBreakLen, lon
                         <div>
                             <p>---------------------</p>
                             <div className='Form__save-button-container'>
-                                <button className='Form__button' style={{fontSize: 'medium'}}onClick={handleSync}>save changes to account</button>
+                                <button className='Form__button' style={{fontSize: 'small'}}onClick={handleSync}>save changes to account</button>
                             </div>
                             {goodSync && <div className='Form__success'>settings saved</div>}
+                            <div style={{textAlign: 'center'}}>
+                                <p>---------------------</p>
+                                <button className='Form__button' style={{fontSize: 'small'}}onClick={handleSignOut}>sign out</button>
+                            </div>
                         </div>
                     )
                 }
