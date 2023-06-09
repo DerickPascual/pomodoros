@@ -81,11 +81,11 @@ function App() {
           setVolume(userRead.volume);
         }
 
-        if (userRead.showIntButtons) {
+        if (userRead.showIntButtons === false || userRead.showIntButtons === true) {
           setShowIntButtons(userRead.showIntButtons);
         }
 
-        if (userRead.showStats) {
+        if (userRead.showStats === false || userRead.showStats === true) {
           setShowStats(userRead.showStats);
         }
 
