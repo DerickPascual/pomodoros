@@ -1,10 +1,13 @@
 **Description:**
+
 This is a simple pomodoro timer with a pixel aesthetic. Users can login and track user statistics.
 
-**Built with**
+**Built with:**
+
 This was built with React, Firebase, and Firebase auth. This was my first React App, so bear with me if the code is not the cleanest!
 
-**Installation**
+**Installation:**
+
 You'll need to start a Firebase project with Cloud Firestore as well as Firebase Auth to start the project.
 
 Install the app dependencies in package.json, then add your firebase.js config file in the src directory. It should look like this:
@@ -32,10 +35,12 @@ export default app;
 ```
 Then, run the app!
 
-**License**
+**License:**
+
 Distributed under MIT License.
 
 **CREDITS:**
+
 Frontend was inspired by countdowns.live and buildspace.so/home.
 
 The emoji graphics are from the open source project Twemoji. The graphics are copyright 2020 Twitter, Inc and other contributors. The graphics are licensed under CC-BY 4.0. You should review the license before usage in your project.
