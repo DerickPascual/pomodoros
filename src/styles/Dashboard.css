@@ -1,0 +1,39 @@
+@media screen and (max-width: 868px) {
+    .Dashboard__buttons-container {
+        visibility: hidden;
+    }
+}
+
+.Dashboard__buttons-container {
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 1%;
+}
+
+.Dashboard__left-buttons-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.Dashboard__right-buttons-container {
+    text-align: right;
+}
+
+.Dashboard__button {
+    all: unset;
+    cursor: pointer;
+    text-decoration: underline;
+    margin: 15px;
+    padding: 5px;
+    color: rgb(201, 201, 201);
+    width: fit-content;
+    /* got strange behavior when dragging an element
+    upwards near the background. This is solution for now. */
+    /* background: url("./images/black.jpg"); */
+}
+
+.Dashboard__button:hover {
+    color: rgb(255, 238, 0);
+}

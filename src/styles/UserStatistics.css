@@ -1,0 +1,25 @@
+.UserStatistics {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 25%;
+    left: 87.5%;
+}
+
+.UserStatistics__statistics-container:hover {
+    cursor: move;
+}
+
+.UserStatistics__single-statistic-container {
+    margin: 20px;
+}
+
+.UserStatistics__time {
+    margin: 0;
+}
+
+.UserStatistics__label {
+    margin: 5px;
+    color: rgb(180, 180, 180);
+}

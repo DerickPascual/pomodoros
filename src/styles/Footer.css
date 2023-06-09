@@ -1,0 +1,33 @@
+
+@media screen and (max-width: 868px) {
+    .Footer {
+        visibility: hidden;
+    }    
+}
+
+@media screen and (max-height: 800px) {
+    .Footer {
+        visibility: hidden;
+    }
+}
+
+.Footer {
+    color: rgb(147, 147, 147);
+    font-size: x-small;
+    bottom: 0;
+    position: fixed;
+    text-align: left;
+}
+
+.Footer__p {
+    margin: 10px;
+}
+
+.Footer__a {
+    text-decoration: none;
+    color: rgb(199, 169, 0);
+}
+
+.Footer__a:hover {
+    color: rgb(255, 238, 0);
+}

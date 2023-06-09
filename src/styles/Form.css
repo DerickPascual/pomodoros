@@ -1,0 +1,110 @@
+.Form {
+    color: rgb(200, 200, 200);
+    margin: 20px; 
+    display: flex;
+    flex-direction: column;
+}
+
+.Form__text-input {
+    all: unset;
+    background: rgb(255, 255, 255);
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 3px;
+    width: 216px;
+}
+
+.Form__num-input {
+    all: unset;
+    background: rgb(255, 255, 255);
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 3px;
+    width: 214px;
+}
+
+.Form__button {
+    all: unset;
+    text-decoration: underline;
+    color: rgb(200, 200, 200);
+    cursor: pointer;
+    width: fit-content;
+    margin: 5px;
+}
+
+.Form__reset-button-container {
+    text-align: center;
+}
+
+.Form__save-button-container {
+    font-size: small;
+    text-align: center;
+}
+
+.Form__select {
+    font: unset;
+    border: unset;
+    background: rgb(255, 255, 255);
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 3px;
+    width: 214px;
+}
+
+.Form__select:focus {
+    outline: 2px solid orange;
+}
+
+.Form__reset-button {
+    all: unset;
+    text-decoration: underline;
+    color: rgb(200, 200, 200);
+    cursor: pointer;
+    width: fit-content;
+    margin: 10px;
+    font-size: small;
+}
+
+.Form__button:hover {
+    color: rgb(255, 238, 0);
+}
+
+.Form__reset-button:hover {
+    color: rgb(255, 238, 0);
+}
+
+.Form__submit-container {
+    text-align: center;
+}
+
+.Form__switch-container {
+    text-align: center;
+    font-size: small;
+}
+
+.Form__hint {
+    font-size: .75rem;
+    margin: 0px;
+    padding: 0px;
+}
+
+.Form__error {
+    padding: 5px;
+    text-align: center;
+    color: red;
+}
+
+.Form__success {
+    padding: 5px;
+    text-align: center;
+    color: green;
+}
