@@ -35,6 +35,8 @@ function App() {
   const [sessionTotal, setSessionTotal] = useState(null);
   const [sessionStudied, setSessionStudied] = useState(null);
   const [sessionOnBreak, setSessionOnBreak] = useState(null);
+  // volume 
+  const [volume, setVolume] = useState(25);
 
   // ensures function is only called the first time App is rendered
   useEffect(() => {
@@ -72,6 +74,10 @@ function App() {
 
         if (userRead.statsType) {
           setStatsType(userRead.statsType);
+        }
+
+        if (userRead.volume) {
+          setVolume(userRead.volume);
         }
 
         setSessionTotal(0);
@@ -147,6 +153,8 @@ function App() {
         statsType={statsType}
         setStatsType={setStatsType}
         userId={userId}
+        setVolume={setVolume}
+        volume={volume}
       />
       <Timer 
         workLen={workLen}
@@ -164,6 +172,7 @@ function App() {
         setTimeStudied={setTimeStudied}
         timeOnBreak={timeOnBreak}
         setTimeOnBreak={setTimeOnBreak}
+        volume={volume}
       />
       { loggedIn &&
         <div style={{visibility: showStats ? 'visible' : 'hidden'}}>

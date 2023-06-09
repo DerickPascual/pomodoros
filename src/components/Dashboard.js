@@ -6,9 +6,9 @@ import SettingsForm from './SettingsForm';
 import { signOut } from "firebase/auth";
 import { auth } from '../firebase';
 
-function Dashboard({workLen, setWorkLen, shortBreakLen, setShortBreakLen, longBreakLen, setLongBreakLen, currentPeriod, setCurrentPeriod, longBrInterval, setLongBrInterval, loggedIn, showStats, setShowStats, statsPosition, setStatsPosition, timerPosition, setTimerPosition, setTotalTime, setTimeStudied, setTimeOnBreak, statsType, setStatsType, userId}) {
+function Dashboard({workLen, setWorkLen, shortBreakLen, setShortBreakLen, longBreakLen, setLongBreakLen, currentPeriod, setCurrentPeriod, longBrInterval, setLongBrInterval, loggedIn, showStats, setShowStats, statsPosition, setStatsPosition, timerPosition, setTimerPosition, setTotalTime, setTimeStudied, setTimeOnBreak, statsType, setStatsType, userId, volume, setVolume}) {
 
-    const props = {workLen, setWorkLen, shortBreakLen, setShortBreakLen, longBreakLen, setLongBreakLen, currentPeriod, setCurrentPeriod, longBrInterval, setLongBrInterval, loggedIn, showStats, setShowStats, statsPosition, setStatsPosition, timerPosition, setTimerPosition, setTotalTime, setTimeStudied, setTimeOnBreak, statsType, setStatsType, userId}
+    const props = {workLen, setWorkLen, shortBreakLen, setShortBreakLen, longBreakLen, setLongBreakLen, currentPeriod, setCurrentPeriod, longBrInterval, setLongBrInterval, loggedIn, showStats, setShowStats, statsPosition, setStatsPosition, timerPosition, setTimerPosition, setTotalTime, setTimeStudied, setTimeOnBreak, statsType, setStatsType, userId, volume, setVolume}
 
     const [showSettings, setShowSettings] = useState(false);
     const [showSignIn, setShowSignIn] = useState(false);

@@ -1,6 +1,8 @@
 import '../styles/Timer.css'
 import Draggable from 'react-draggable';
 import { useState, useEffect, useCallback} from 'react';
+import useSound from 'use-sound';
+import timerSfx from '../sounds/minecraft_level_up.mp3';
 
 // given minutes, returns seconds to nearest second
 const minutesToSeconds = (minutes) => {
@@ -29,7 +31,7 @@ const getDisplaySecs = (seconds) => {
     return secs.toString();
 }
 
-function Timer({workLen, shortBreakLen, longBreakLen, currentPeriod, setCurrentPeriod, longBrInterval, timerPosition, setTimerPosition, loggedIn, totalTime, setTotalTime, timeStudied, setTimeStudied, timeOnBreak, setTimeOnBreak}) {
+function Timer({workLen, shortBreakLen, longBreakLen, currentPeriod, setCurrentPeriod, longBrInterval, timerPosition, setTimerPosition, loggedIn, totalTime, setTotalTime, timeStudied, setTimeStudied, timeOnBreak, setTimeOnBreak, volume}) {
     const [drag, setDrag] = useState(false);
     const [paused, setPaused] = useState(true);
     const [worksDone, setWorksDone] = useState(1);
@@ -39,6 +41,7 @@ function Timer({workLen, shortBreakLen, longBreakLen, currentPeriod, setCurrentP
     const [startVal, setStartVal] = useState();
     const [displayMins, setDisplayMins] = useState();
     const [displaySecs, setDisplaySecs] = useState();
+    const [play] = useSound(timerSfx, { volume: (volume * 1/100) });
 
     const handleDrag = (e, data) =>{
         setDrag(!drag);
@@ -129,7 +132,8 @@ function Timer({workLen, shortBreakLen, longBreakLen, currentPeriod, setCurrentP
     // whenever remaining changes, update the display minutes and seconds
     useEffect(() => {
         if (remaining === 0) {
-            handleSkip()
+            play();
+            handleSkip();
         } else if (remaining) {
             setDisplayMins(getDisplayMins(remaining));
             setDisplaySecs(getDisplaySecs(remaining));

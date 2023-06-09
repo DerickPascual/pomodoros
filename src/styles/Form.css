@@ -38,6 +38,14 @@
     margin: 5px;
 }
 
+.Form__volume-container {
+    text-align: center;
+}
+
+::-webkit-slider-thumb {
+    background-color: black
+}
+
 .Form__reset-button-container {
     text-align: center;
 }

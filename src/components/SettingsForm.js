@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/Form.css';
 import { db } from '../firebase';
 import { doc, setDoc } from 'firebase/firestore';
+import useSound from 'use-sound';
+import timerSfx from '../sounds/minecraft_level_up.mp3';
 
-function SettingsForm({workLen, setWorkLen, shortBreakLen, setShortBreakLen, longBreakLen, setLongBreakLen, currentPeriod, setCurrentPeriod, longBrInterval, setLongBrInterval, loggedIn, statsPosition, setStatsPosition, timerPosition, setTimerPosition, setStatsType, statsType, userId}) {
+function SettingsForm({workLen, setWorkLen, shortBreakLen, setShortBreakLen, longBreakLen, setLongBreakLen, currentPeriod, setCurrentPeriod, longBrInterval, setLongBrInterval, loggedIn, statsPosition, setStatsPosition, timerPosition, setTimerPosition, setStatsType, statsType, userId, volume, setVolume}) {
     
     const [goodSync, setGoodSync] = useState(false);
 
@@ -71,11 +73,19 @@ function SettingsForm({workLen, setWorkLen, shortBreakLen, setShortBreakLen, lon
             longBreakLen: longBreakLen,
             workLen: workLen,
             longBrInterval: longBrInterval,
-            statsType: statsType
+            statsType: statsType,
+            volume: volume
         }, { merge: true });
 
         setGoodSync(true);
     }
+
+    const handleVol = (e) => {
+        e.preventDefault();
+        setVolume(e.target.value);
+    }
+
+    const [play] = useSound(timerSfx, { volume: (volume * 1/100)})
 
     return (
         <div className='Form'>
@@ -138,6 +148,21 @@ function SettingsForm({workLen, setWorkLen, shortBreakLen, setShortBreakLen, lon
                     onChange={handleLongBrIntervalChange}
                     >
                 </input>
+                <p>---------------------</p>
+                <div className='Form__volume-container'>
+                    <label htmlFor='volume'>timer volume</label>
+                    <br></br>
+                    <input 
+                        className='Form__slider'
+                        name='volume'
+                        type='range'
+                        min='0'
+                        max='100'
+                        value={volume}
+                        onChange={handleVol}
+                        onMouseUp={() => play()}
+                    />
+                </div>
                 <p>---------------------</p>
                 <div className='Form__reset-button-container'>
                     <button className='Form__reset-button' onClick={handleResetTimerPos}>reset timer position</button>
