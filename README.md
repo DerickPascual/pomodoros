@@ -35,10 +35,6 @@ export default app;
 ```
 Then, run the app!
 
-**License:**
-
-Distributed under MIT License.
-
 **CREDITS:**
 
 Frontend was inspired by countdowns.live and buildspace.so/home.
