@@ -3,6 +3,7 @@ import Draggable from 'react-draggable';
 import { useState, useEffect, useCallback} from 'react';
 import useSound from 'use-sound';
 import timerSfx from '../sounds/minecraft_level_up.mp3';
+import * as workerTimers from 'worker-timers';
 
 // given minutes, returns seconds to nearest second
 const minutesToSeconds = (minutes) => {
@@ -37,10 +38,13 @@ function Timer({workLen, shortBreakLen, longBreakLen, currentPeriod, setCurrentP
     const [worksDone, setWorksDone] = useState(1);
     const[remaining, setRemaining] = useState();
     const [elapsed, setElapsed] = useState(0);
-    // variable to store the amount of time in seconds the timer should start at
+    // state to store the amount of time in seconds the timer should start at
     const [startVal, setStartVal] = useState();
     const [displayMins, setDisplayMins] = useState();
     const [displaySecs, setDisplaySecs] = useState();
+    // state to account for drift
+    const [expected, setExpected] = useState();
+    // sound function
     const [play] = useSound(timerSfx, { volume: (volume * 1/100) });
 
     const handleDrag = (e, data) =>{
@@ -49,6 +53,7 @@ function Timer({workLen, shortBreakLen, longBreakLen, currentPeriod, setCurrentP
     }
 
     const handlePaused = () => {
+        setExpected(Date.now());
         setPaused(!paused);
     }
 
@@ -77,7 +82,7 @@ function Timer({workLen, shortBreakLen, longBreakLen, currentPeriod, setCurrentP
     useEffect(() => {
         setElapsed(0);
         setPaused(true);
-    },[currentPeriod])
+    },[currentPeriod]);
 
     // whenever time period OR length of period changes, set the start value respective to that time period
     useEffect(() => {
@@ -93,18 +98,32 @@ function Timer({workLen, shortBreakLen, longBreakLen, currentPeriod, setCurrentP
         }
 
         findTime();
-    }, [currentPeriod, workLen,shortBreakLen, longBreakLen])
+    }, [currentPeriod, workLen,shortBreakLen, longBreakLen]);
 
     // interval to elapse time. Increments elapsed by 1 every second. 
     useEffect(() => {
         if (!paused) {
-            // after one second, the elapsed function will execute
-            const interval = setInterval(() => setElapsed(elapsed + 1), 1000);
-            // we clear the interval
-            return () => clearInterval(interval);
-            // since elapsed is a dependency, the useEffect will rerun
+            // accounting for drift. Our drift will in most cases be greater than we expected, since will likely take longer.
+            let drift = Date.now() - expected;
+            let interval;
+
+            if (drift < 1000) {
+                setExpected(expected + 1000);
+                interval = workerTimers.setInterval(() => setElapsed(elapsed + 1), 1000 - drift);
+            } else  {
+                // In this case our drift has exceeded our interval.
+                // If remaining is >= 2, we can set elapsed one more forward. It will look like we are skipping a second.  
+                // Otherwise, there will just be one extra second on the timer. 
+                if (remaining >= 2) {
+                    drift -= 1000;
+                    setExpected(expected + 2000);
+                    interval = workerTimers.setInterval(() => setElapsed(elapsed + 2), 1000 - drift);
+                }
+            } 
+
+            return () => workerTimers.clearInterval(interval);
         }
-    }, [elapsed, paused])
+    }, [elapsed, paused]);
 
     // updating time values
     useEffect(() => {
@@ -140,7 +159,9 @@ function Timer({workLen, shortBreakLen, longBreakLen, currentPeriod, setCurrentP
         }
     }, [remaining, handleSkip]);
 
-
+    useEffect(() => {
+        document.title = `pomodoros - ${displayMins}:${displaySecs}`;
+    }, [displayMins, displaySecs])
     
     return (
     <div className='Timer'>
