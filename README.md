@@ -1,6 +1,6 @@
 **Description:**
 
-This is a simple pomodoro timer with a pixel aesthetic. Users can login and track user statistics.
+This is a simple pomodoro timer with a pixel aesthetic. Users can login and track user statistics. Deployed at pomodoros.me
 
 **Built with:**
 
